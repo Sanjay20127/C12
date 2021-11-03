@@ -19,17 +19,7 @@ function setup()
   rabbit = createSprite(180,340,30,30);
   rabbit.scale =0.09;
   rabbit.addImage(rabbitImg);
-  if(frameCount%80 == 0)
-  {
-    if(selectSprite == 1)
-    {
-      spawnApples();
-    }
-    if(selectSprite == 2)
-    {
-      spawnOranges();
-    }
-  }
+  
 }
 function draw()
 {
@@ -38,27 +28,34 @@ function draw()
   edges= createEdgeSprites();
   rabbit.collide(edges);
   rabbit.x = World.mouseX;
-  spawnApples();
+  //spawnApples();
   drawSprites();
-  
+  if(frameCount%80 == 0)
+  {
+    if(selectSprite == 1)
+    {
+      spawnApples();
+    }
+    else
+    {
+      spawnOranges();
+    }
+  }
 }
 function spawnApples()
 {
-  if(frameCount%80 == 0)
-  {
     apple= createSprite(random(50,350),40,10,10);
-    apple= addImage(appleImg);
+    apple.addImage(appleImg);
     apple.scale= 0.9
     apple.velocityY=4;
-  }
+    apple.lifetime=150;
 }
 function spawnOranges()
 {
-  if(frameCount%80 === 0)
-  {
-    orange= createSprite(random(50,350),40,10,10);
-    orange= addImage(orangeImg);
-    orange.scale= 0.9
-    orange.velocityY=4;
-  }
+
+  orange= createSprite(random(50,350),40,10,10);
+  orange.addImage(orangeImg);
+  orange.scale= 0.2
+  orange.velocityY=4;
+  orange.lifetime=150;
 }
